@@ -41,24 +41,16 @@ public static Boolean valueOf(boolean b){
     - 생성자처럼 API 설명에 명확히 드러나지 않으니 사용자는 정적 팩토리 메서드 방식 클래스를 인스턴스화할 방법을 알아내야 함
 
 ### ✅ 정적 팩토리 메서드 명명규칙
-|메서드명|설명|
-| --- | --- |
-| from | 매개변수를 하나 받아서 해당 타입의 인스턴스를 반환하는 형변환 메서드 ⇒ 해당 타입을 변환하는거니, 매개변수를 여러 개 받아서 반환하는것도 괜찮을듯?
-ex) Date d = Date.from(instant); |
-| of | 여러 매개변수를 받아 적합한 타입의 인스턴스를 반환하는 집계 메서드
-ex) Set<Rank> faceCards = EnumSet.of(JACK, QUEEN, KING); |
-| valueOf | from 과 of의 더 자세한 버전
-ex) BigInteger prime = BigInteger.valueOf(Integer.MAX_VALUE);  |
-| instance 또는 getInstance | (매개변수를 받는다면) 매개변수로 명시한 인스턴스를 반환하지만, 같은 인스턴스임을 보장하지는 않음
-ex) StackWalker luke = StackWalker.getInstance(options); |
-| create 혹은 newInstance | instacne 혹은 getInstacne와 같지만, 매번 새로운 인스턴스를 생성해 반환을 보장
-ex) Object newArray = Array.newInstance(classObject, arrayLen); |
-| getType | getInstance 와 같으나, 생성할 클래스가 아닌 다른 클래스에 팩터리 메서드를 정의할 때 사용. “Type”은 팩토리 메서드가 반환할 객체의 타입
-ex) FileStore fs = Files.getFileStore(path) |
-| newType | newInstance와 같으나, 생성할 클래스가 아닌 다른 클래스에 팩토리 메서드를 정의할 때 사용. Type은 팩토리 메서드가  반환할 객체의 타입임
-ex) BufferedReader br = Files.newBufferedReader(path) |
-| type | getType 과 newType의 간결한 버전
-ex) List<Compliant> litany = Collections.list(legacyLitancy); |
+| 메서드명                                                                                       | 설명                                                                                    |
+|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| from <br> ex) `Date d = Date.from(instant);`                                                | 매개변수를 하나 받아서 해당 타입의 인스턴스를 반환하는 형변환 메서드 ⇒ 해당 타입을 변환하는거니, 매개변수를 여러 개 받아서 반환하는것도 괜찮을듯?   |   
+| of <br> ex) `Set<Rank> faceCards = EnumSet.of(JACK, QUEEN, KING);`                          | 여러 매개변수를 받아 적합한 타입의 인스턴스를 반환하는 집계 메서드                                                 |
+| valueOf <br> ex) `BigInteger prime = BigInteger.valueOf(Integer.MAX_VALUE);`                | from 과 of의 더 자세한 버전                                                                   |
+| instance 또는 getInstance <br> ex) `StackWalker luke = StackWalker.getInstance(options);`      | (매개변수를 받는다면) 매개변수로 명시한 인스턴스를 반환하지만, 같은 인스턴스임을 보장하지는 않음                                |
+| create 혹은 newInstance <br> ex) `Object newArray = Array.newInstance(classObject, arrayLen);` | instacne 혹은 getInstacne와 같지만, 매번 새로운 인스턴스를 생성해 반환을 보장                                 |
+| getType <br> ex) `FileStore fs = Files.getFileStore(path)`                                   | getInstance 와 같으나, 생성할 클래스가 아닌 다른 클래스에 팩터리 메서드를 정의할 때 사용. “Type”은 팩토리 메서드가 반환할 객체의 타입 |
+| newType <br> ex) `BufferedReader br = Files.newBufferedReader(path)`                         | newInstance와 같으나, 생성할 클래스가 아닌 다른 클래스에 팩토리 메서드를 정의할 때 사용. Type은 팩토리 메서드가  반환할 객체의 타입임  |
+| type <br> ex) `List<Compliant> litany = Collections.list(legacyLitancy);`                    | getType 과 newType의 간결한 버전                                                             |                                                             
 
 >📌 정리  
 >- 정적 팩토리 메서드와 public 생성자는 각자 쓰임새가 있으니 상대적인 장단점 이해하고 쓰기
