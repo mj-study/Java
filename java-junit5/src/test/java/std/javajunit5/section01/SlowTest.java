@@ -1,4 +1,4 @@
-package std.javajunit5;
+package std.javajunit5.section01;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -11,6 +11,6 @@ import org.junit.jupiter.api.Test;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Test
-@Tag("fast")
-public @interface FastTest {
+@Tag("slow")
+public @interface SlowTest {
 }
