@@ -1,18 +1,63 @@
 package std.javajunit5;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.*;
 
 import java.time.Duration;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
 
+	@Test
+	@EnabledIfEnvironmentVariable(named = "LOCAL", matches = "local")
+	void envVariable () {
+		System.out.println(System.getenv("LOCAL"));
+		System.out.println("특정 환경변수(name)이 matches(정규식 또는 값)과 일치할 때 사용");
+	}
+
+	@Test
+	@EnabledIfSystemProperty(named = "java.version", matches = "1.8.xxx")
+	void propertyVariable() {
+		System.out.println("설정한 시스템 설정에 맞는 환경에서 실행");
+	}
+
+	@Test
+	@DisplayName("복잡한 조건 검증")
+	@EnabledOnOs(OS.MAC)
+	void create_new_study2() {
+		String testEnv = System.getenv("LOCAL");
+		System.out.println("testEnv = " + testEnv);
+		assumeTrue("LOCAL".equalsIgnoreCase(testEnv));
+
+		// 1번째 매개변수의 조건이 만족하면, 2번째 매개변수 실행코드 실행
+		assumingThat("LOCAL".equalsIgnoreCase(testEnv), () -> {
+			Study actual = new Study(10);
+			assertThat(actual.getLimit()).isGreaterThan(0);
+			System.out.println("ㅎㅇ");
+		});
+
+		// Study actual = new Study(10);
+		// assertThat(actual.getLimit()).isGreaterThan(0);
+	}
+
+	@Test
+	@DisabledOnOs(OS.MAC)
+	void create_new_study3() {
+		System.out.println("mac 에서는 실행 ㄴ");
+	}
 
 	@Test
 	@DisplayName("스터디 만들기")
@@ -21,7 +66,7 @@ class StudyTest {
 		// 실행코드 무시하고, duration 끝나는 시간안에 무조건 테스트를 끝내겠다,
 		assertTimeoutPreemptively(Duration.ofMillis(100), () -> {
 			new Study(10);
-			Thread.sleep(1000);
+			// Thread.sleep(1000);
 		});
 
 		// ## assertTimeout
