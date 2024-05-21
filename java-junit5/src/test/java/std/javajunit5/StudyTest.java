@@ -20,8 +20,8 @@ import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class StudyTest {
 
+class StudyTest {
 	@Test
 	@Tag("fast")
 	@DisplayName("StudyTest 클래스 fast")

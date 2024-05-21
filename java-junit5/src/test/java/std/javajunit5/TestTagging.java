@@ -21,17 +21,20 @@ class TestTagging {
 		System.out.println("before All");
 	}
 
-	@Test
+	// 커스텀 태그
 	@DisplayName("스터디 만들기")
-	@Tag("fast")
+	@FastTest
+	// @Test
+	// @Tag("fast")
 	void fastTest() {
 		Study study = new Study(10);
 		assertThat(study.getLimit()).isGreaterThan(0);
 	}
 
-	@Test
 	@DisplayName("출력")
-	@Tag("slow")
+	@SlowTest
+		// @Test
+		// @Tag("slow")
 	void slowTest() {
 		Stream.iterate(0, i -> i < 10, i -> i + 1)
 			.forEach(i -> {
