@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
@@ -20,6 +21,13 @@ import org.junit.jupiter.api.condition.OS;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
+
+	@Test
+	@Tag("fast")
+	@DisplayName("StudyTest 클래스 fast")
+	void fastTest () {
+		System.out.println("fastTest 실행");
+	}
 
 	@Test
 	@EnabledIfEnvironmentVariable(named = "LOCAL", matches = "local")
