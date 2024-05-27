@@ -12,7 +12,7 @@ import org.junit.jupiter.api.TestInstance;
 import std.javajunit5.Study;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+// @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class StudyInstanceTest {
 
 	int value = 1;
