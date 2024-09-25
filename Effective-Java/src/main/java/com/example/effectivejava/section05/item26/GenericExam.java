@@ -1,4 +1,4 @@
-package com.example.effectivejava.section05;
+package com.example.effectivejava.section05.item26;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,7 +29,7 @@ public class GenericExam {
 	}
 
 	/**
-	 * set 읽기 전용 메서드
+	 * set 읽기 전용 메서드z
 	 * 비한정적 와일드카드를 사용했기에 해당 값을 다시 재연산에 사용x
 	 * @param s
 	 */
